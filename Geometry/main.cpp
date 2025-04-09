@@ -7,10 +7,18 @@ using namespace std;
 //#define triangle_3
 //#define triangle_4
 //#define ROMB
+//#define FOR_1
+//#define SHACHMATY
+//#define SHACHMATY_2
+
 int main()
 {
 	setlocale(LC_ALL, "");
 	cout << "Geometry" << endl;
+    int n;
+    cout << "Введите количество клеток: "; cin >> n;
+    int cube_size;
+    cout << "Введите размер клетки: "; cin >> cube_size;
 #ifdef Kub
 
     int size;
@@ -121,35 +129,21 @@ int main()
   
 #endif // triangle_4
 #ifdef ROMB
-    int height;
-
-    cout << "Введите высоту ромба (нечетное число): ";
-    cin >> height;
-
-    if (height <= 0 || height % 2 == 0) {
-        cout << "Высота ромба должна быть положительным нечетным числом." << endl;
-        return 1;
-    }
-
-    // Верхняя половина ромба
-    for (int i = 1; i <= height / 2 + 1; ++i) {
-        // Пробелы слева
-        for (int j = 0; j < height / 2 + 1 - i; ++j) {
-            cout << " ";
-        }
-
-        // Вывод '/'
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n - i; j++) cout << ' ';
         cout << "/";
-
-        // Пробелы внутри
-        for (int j = 0; j < (i - 1) * 2; ++j) {
-            cout << " ";
-        }
-
-        // Вывод '\'
-        if (i > 1) { //Не выводим '\' в первой строке
-            cout << "\\";
-        }
+        for (int j = n; j < n + i * 2; j++) cout << ' ';
+        cout << "\\";
+        cout << endl;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        cout << " ";
+        for (int j = 0; j < i; j++) cout << ' ';
+        cout << "\\";
+        for (int j = n * 2 - i - 2; j > i; j--) cout << ' ';
+        cout << "/";
         cout << endl;
     }
 
@@ -177,7 +171,83 @@ int main()
     }
 
 #endif // ROMB
+#ifdef FOR_1
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            //if ((j + i) % 2 == 0) cout << "+ ";else cout << "- ";
+            //if (i % 2 == j % 2)cout << " +";else cout << " -";
+            //i % 2 == j % 2 ? cout << "+ " : cout << "- ";
+            cout << (i % 2 == j % 2 ? "+ " : "- ");
+        }cout << endl;
+    }cout << endl;
+#endif // FOR_1
+#ifdef SHACHMATY
 
+    for (int i = 0; i < n; i++)
+    {
+        if (i % 2 == 0)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    if (i % 2 == 0)for (int j = 0; j < n; j++) cout << "* ";
+                    else for (int j = 0; j < n; j++) cout << "  ";
+                }
+                cout << endl;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < n; i++)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    if (i % 2 == 0)for (int j = 0; j < n; j++) cout << "  ";
+                    else for (int j = 0; j < n; j++) cout << "* ";
+                }
+                cout << endl;
+            }
+        }
+    }cout << endl;
+
+#endif // SHACHMATY
+#ifdef SHACHMATY_2
+
+    setlocale(0, "C");
+    for (int t = 0; t < n; t++)
+    {
+        if (t % 2 == 0)
+        {
+            for (int i = 0; i < cube_size; i++)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    if (i % 2 == 0) for (int j = 0; j < cube_size; j++) cout << (char)219 << (char)219;
+                    else for (int j = 0; j < cube_size; j++) cout << "  ";
+                }
+                cout << endl;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < cube_size; i++)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    if (i % 2 == 0) for (int j = 0; j < cube_size; j++) cout << "  ";
+                    else for (int j = 0; j < cube_size; j++) cout << (char)219 << (char)219;
+
+                }
+                cout << endl;
+            }
+        }
+    }
+#endif // SHACHMATY_2
+
+}
   
 
-    }
+    
